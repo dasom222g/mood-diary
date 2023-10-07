@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import Title from '../components/Title';
+import Emotion from '../components/Emotion';
+import { moods } from '../data/common';
 
 const Home = () => {
   // logic
@@ -14,6 +16,7 @@ const Home = () => {
   return (
     <div>
       <Title mainTitle={title} />
+      <Emotion data={moods[2]} />
     </div>
   );
 };
