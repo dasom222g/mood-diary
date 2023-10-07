@@ -4,6 +4,7 @@ import Title from '../components/Title';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { diaryListState } from '../data/dataState';
+import Emotion from '../components/Emotion';
 
 const Home = () => {
   // logic
@@ -16,6 +17,11 @@ const Home = () => {
   return (
     <div className="flex flex-col h-full items-center">
       <Title mainTitle={'10월'} />
+      <div className="flex flex-wrap">
+        {diaryList.map((diary) => (
+          <Emotion key={diary.id} data={diary.mood} />
+        ))}
+      </div>
 
       {/* START: add button */}
       <Link
