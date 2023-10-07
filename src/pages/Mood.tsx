@@ -5,6 +5,7 @@ import { diaryListState, diaryState } from '../data/dataState';
 import DiaryInput from '../components/DiaryInput';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
+import Title from '../components/Title';
 
 const Mood = () => {
   // logic
@@ -47,6 +48,9 @@ const Mood = () => {
         </div>
         <div className="py-2">
           <Emotion data={mood} />
+        </div>
+        <div className="py-2">
+          <Title mainTitle={mood.description} />
         </div>
         <div className="py-2">
           <form id="diaryForm" onSubmit={handleSubmit}>
