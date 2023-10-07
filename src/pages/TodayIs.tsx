@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import EmotionSelect from '../components/EmotionSelect';
 import { moods } from '../data/common';
 import { CalendarSelect } from '../components/CalendarSelect';
-import { DiaryType, MoodType } from '../lib/type';
-import { initialDiary } from '../data/initialState';
+import { MoodType } from '../lib/type';
+import { useRecoilState } from 'recoil';
+import { diaryState } from '../data/dateState';
+import { useNavigate } from 'react-router-dom';
 
 export const TodayIs = () => {
-  const [diary, setDiary] = useState<DiaryType>(initialDiary);
-
   // logic
+  const history = useNavigate();
+
+  const [diary, setDiary] = useRecoilState(diaryState);
+
   const handleDateChage = (date: string) => {
     const result = { ...diary, date };
     setDiary(result);
@@ -18,9 +22,6 @@ export const TodayIs = () => {
     setDiary((prev) => ({ ...prev, mood }));
   };
 
-  useEffect(() => {
-    console.log('diary', diary);
-  }, [diary]);
   // view
   return (
     <div>
@@ -38,6 +39,7 @@ export const TodayIs = () => {
         <button
           type="button"
           className="w-full py-4 px-1 block rounded-3xl text-white text-sm font-medium bg-mood-blue-700"
+          onClick={() => history('/mood')}
         >
           일기 쓰러 가기
         </button>

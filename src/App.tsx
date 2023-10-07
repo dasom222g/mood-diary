@@ -4,16 +4,19 @@ import Home from './pages/Home';
 import { TodayIs } from './pages/TodayIs';
 import Mood from './pages/Mood';
 import Layout from './components/layout/Layout';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/today-is" element={<TodayIs />} />
-        <Route path="/mood" element={<Mood />} />
-      </Routes>
-    </Layout>
+    <RecoilRoot>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/today-is" element={<TodayIs />} />
+          <Route path="/mood" element={<Mood />} />
+        </Routes>
+      </Layout>
+    </RecoilRoot>
   );
 }
 
