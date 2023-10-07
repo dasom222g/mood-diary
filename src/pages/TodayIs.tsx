@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import EmotionSelect from '../components/EmotionSelect';
 import { moods } from '../data/common';
 import { CalendarSelect } from '../components/CalendarSelect';
@@ -6,6 +6,7 @@ import { MoodType } from '../lib/type';
 import { useRecoilState } from 'recoil';
 import { diaryState } from '../data/dateState';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 
 export const TodayIs = () => {
   // logic
@@ -36,13 +37,7 @@ export const TodayIs = () => {
         <CalendarSelect dateChage={handleDateChage} />
       </div>
       <div className="py-2">
-        <button
-          type="button"
-          className="w-full py-4 px-1 block rounded-3xl text-white text-sm font-medium bg-mood-blue-700"
-          onClick={() => history('/mood')}
-        >
-          일기 쓰러 가기
-        </button>
+        <Button text="일기 쓰러 가기" onClick={() => history('/mood')} />
       </div>
     </div>
   );
