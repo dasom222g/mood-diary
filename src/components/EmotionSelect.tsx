@@ -1,12 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { MoodType } from '../lib/type';
 
 interface EmotionSelectProps {
   title: string;
   moods: MoodType[];
+  emotionChage: (data: MoodType) => void;
 }
 
-const EmotionSelect: FC<EmotionSelectProps> = ({ title, moods }) => {
+const EmotionSelect: FC<EmotionSelectProps> = ({
+  title,
+  moods,
+  emotionChage,
+}) => {
+  const [value, setValue] = useState('');
+  // logic
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    mood: MoodType
+  ) => {
+    const { value } = event.target;
+    setValue(value);
+    emotionChage(mood);
+  };
+  // view
   return (
     <div>
       <span className="block">{title}</span>
@@ -20,6 +36,8 @@ const EmotionSelect: FC<EmotionSelectProps> = ({ title, moods }) => {
                 id={mood.name}
                 value={mood.name}
                 className="w-0 h-0 absolute inset-0 peer"
+                checked={value === mood.name}
+                onChange={(event) => handleChange(event, mood)}
               />
               {/* className="w-0 h-0 absolute inset-0 peer" */}
               <div className="peer-checked:border-2 rounded-2xl border-red-500">
