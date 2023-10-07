@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../components/Title';
 
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { diaryListState } from '../data/dataState';
 
 const Home = () => {
   // logic
+  const diaryList = useRecoilValue(diaryListState);
 
+  useEffect(() => {
+    console.log(diaryList);
+  }, [diaryList]);
   // view
   return (
     <div className="flex flex-col h-full items-center">

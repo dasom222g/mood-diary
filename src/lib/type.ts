@@ -5,7 +5,7 @@ export interface MoodType {
 }
 
 export interface DiaryType {
-  id:1
+  id: number
   mood: MoodType
   date: string
   diary: string
