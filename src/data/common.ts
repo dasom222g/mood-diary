@@ -4,7 +4,7 @@ export const moods: MoodType[] =[
   {
     id: 1,
     name: 'depressed',
-    description: '우울해'
+    description: '우울해',
   },
   {
     id: 2,
