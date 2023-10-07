@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'mood-gray-700': '#383737',
         'mood-purple': '#E7E3FF',
+        'mood-blue-700': '#6045FF',
       },
       fontSize: {
         none: 0,

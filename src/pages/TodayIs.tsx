@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EmotionSelect from '../components/EmotionSelect';
 import { moods } from '../data/common';
 import { CalendarSelect } from '../components/CalendarSelect';
-import { MoodType } from '../lib/type';
+import { DiaryType, MoodType } from '../lib/type';
+import { initialDiary } from '../data/initialState';
 
 export const TodayIs = () => {
+  const [diary, setDiary] = useState<DiaryType>(initialDiary);
+
   // logic
   const handleDateChage = (date: string) => {
-    console.log('🚀 : date==>', date);
+    const result = { ...diary, date };
+    setDiary(result);
   };
 
-  const handleEmotionChage = (data: MoodType) => {
-    console.log('🚀 : data==>', data);
+  const handleEmotionChage = (mood: MoodType) => {
+    setDiary((prev) => ({ ...prev, mood }));
   };
+
+  useEffect(() => {
+    console.log('diary', diary);
+  }, [diary]);
   // view
   return (
     <div>
@@ -25,6 +33,14 @@ export const TodayIs = () => {
       </div>
       <div className="py-2">
         <CalendarSelect dateChage={handleDateChage} />
+      </div>
+      <div className="py-2">
+        <button
+          type="button"
+          className="w-full py-4 px-1 block rounded-3xl text-white text-sm font-medium bg-mood-blue-700"
+        >
+          일기 쓰러 가기
+        </button>
       </div>
     </div>
   );
