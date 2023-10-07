@@ -7,7 +7,7 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ mainTitle, subTitle }) => {
   return (
-    <div className="text-center">
+    <div className="text-center w-full">
       {subTitle && <span className="text-sm pb-1 block">{subTitle}</span>}
       <h3 className="text-lg relative">
         {mainTitle}
