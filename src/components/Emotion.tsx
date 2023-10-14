@@ -31,7 +31,7 @@ const Emotion: FC<EmotionProps> = ({ data, size }) => {
         size ? sizeList.find((item) => item.size === size)?.width : "fit"
       } mx-auto text-center`}
     >
-      <img src={`./images/${data.name}.svg`} alt={data.name} />
+      <img src={`/images/${data.name}.svg`} alt={data.name} />
     </div>
   );
 };

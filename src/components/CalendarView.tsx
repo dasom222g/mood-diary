@@ -12,6 +12,7 @@ import { CalendarDateType, DiaryType } from "../lib/type";
 import Emotion from "./Emotion";
 import { calendarDateState } from "../data/dataState";
 import { useSetRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 interface CalendarViewProps {
   diaryList: DiaryType[];
@@ -19,11 +20,18 @@ interface CalendarViewProps {
 
 const CalendarView: FC<CalendarViewProps> = ({ diaryList }) => {
   // logic
+  const history = useNavigate();
+
   const setCalendarDate = useSetRecoilState(calendarDateState);
 
   const handleChange = (value: any | null) => {
-    // const { $y: year, $M, $D: day, $W } = value;
-    console.log("value", value);
+    const { $y: year, $M: month, $D: day } = value;
+    const selectedDate = totalDate(year, month + 1, day);
+    const selectedDiary = diaryList.find(
+      (diary) => diary.date.totalDate === selectedDate
+    );
+
+    selectedDiary && history(`item/${selectedDiary.id}`);
   };
 
   const hadleMonthChange = (value: Dayjs) => {
@@ -33,7 +41,6 @@ const CalendarView: FC<CalendarViewProps> = ({ diaryList }) => {
       year,
       month,
     };
-    // console.log("🚀 value:", value.year());
     setCalendarDate(result);
   };
 

@@ -15,7 +15,7 @@ const Home = () => {
     console.log(diaryList);
   }, [diaryList]);
 
-  // view
+  // viwe
   return (
     <div className="flex flex-col h-full items-center">
       <Title

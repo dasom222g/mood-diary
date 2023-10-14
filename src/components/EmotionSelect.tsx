@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { MoodType } from '../lib/type';
+import React, { FC, useState } from "react";
+import { MoodType } from "../lib/type";
 
 interface EmotionSelectProps {
   title: string;
@@ -12,7 +12,7 @@ const EmotionSelect: FC<EmotionSelectProps> = ({
   moods,
   emotionChage,
 }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   // logic
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -41,7 +41,7 @@ const EmotionSelect: FC<EmotionSelectProps> = ({
               />
               {/* className="w-0 h-0 absolute inset-0 peer" */}
               <div className="peer-checked:border-2 rounded-2xl border-red-500">
-                <img src={`./images/${mood.name}.svg`} alt={mood.name} />
+                <img src={`/images/${mood.name}.svg`} alt={mood.name} />
               </div>
             </label>
           </div>
