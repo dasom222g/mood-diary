@@ -46,6 +46,7 @@ const DiaryInput: FC<DirayInputProps> = ({
       <input
         type="text"
         placeholder="일기를 써주세요"
+        maxLength={20}
         className={`${bgColor || "bg-yellow-200"} w-full rounded-md py-2 px-4`}
         value={input}
         ref={inputRef}
