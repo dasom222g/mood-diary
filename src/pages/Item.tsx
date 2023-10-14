@@ -22,7 +22,31 @@ const Item = () => {
 
   const [selectedDiary, setSelectedDiary] = useState<DiaryType | null>(null);
 
-  const updateDiary = () => {};
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const [editingMessage, setEditingMessage] = useState("");
+
+  const changeMode = () => {
+    setIsEditMode(true);
+  };
+
+  const handleChange = (value: string) => {
+    setEditingMessage(value);
+  };
+
+  const handleCancel = () => {
+    selectedDiary && setEditingMessage(selectedDiary.diary);
+    setIsEditMode(false);
+  };
+
+  const updateDiary = () => {
+    const updateDiaryList = diaryList.map((item) => {
+      return item.id === id ? { ...item, diary: editingMessage } : item;
+    });
+
+    setDiaryList(updateDiaryList);
+    setIsEditMode(false);
+  };
 
   const removeDiary = () => {
     const isConfirm = window.confirm("삭제하시겠습니까?");
@@ -36,7 +60,9 @@ const Item = () => {
     // 현재 데이터 세팅
     const item = id && diaryList.find((diary) => diary.id === id);
 
-    item && setSelectedDiary(item);
+    if (!item) return;
+    setSelectedDiary(item);
+    setEditingMessage(item.diary);
   }, [diaryList, id]);
 
   // view
@@ -50,10 +76,18 @@ const Item = () => {
             {/* START: date */}
           </div>
           <div className="py-2 flex justify-end">
-            <IconButton aria-label="edit" onClick={updateDiary}>
+            <IconButton
+              aria-label="edit"
+              disabled={isEditMode}
+              onClick={changeMode}
+            >
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="delete" onClick={removeDiary}>
+            <IconButton
+              aria-label="delete"
+              disabled={isEditMode}
+              onClick={removeDiary}
+            >
               <DeleteIcon />
             </IconButton>
           </div>
@@ -65,16 +99,32 @@ const Item = () => {
           </div>
           <div className="py-2">
             <DiaryInput
-              value={selectedDiary.diary}
-              readonly={true}
+              value={editingMessage}
+              readonly={!isEditMode}
+              bgColor={isEditMode ? "" : "bg-mood-purple"}
               isReset={false}
+              isFocus={isEditMode}
+              onChage={handleChange}
             />
           </div>
         </div>
       )}
-      {/* <div className="pt-8">
-        <Button text="일기 저장하기" />
-      </div> */}
+      {isEditMode && (
+        <div className="pt-8">
+          <div className="flex">
+            <div className="px-1 w-full">
+              <Button text="일기 수정하기" onClick={updateDiary} />
+            </div>
+            <div className="px-1 w-full">
+              <Button
+                text="취소하기"
+                className="bg-transparent !text-mood-gray-700 border border-mood-gray-700"
+                onClick={handleCancel}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
