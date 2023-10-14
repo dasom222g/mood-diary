@@ -70,6 +70,7 @@ const CalendarView: FC<CalendarViewProps> = ({ diaryList }) => {
           {...other}
           outsideCurrentMonth={outsideCurrentMonth}
           day={date}
+          disabled={!isSelected}
         />
       </div>
     );
