@@ -3,8 +3,8 @@ import EmotionGroup from "../components/EmotionGroup";
 import { moods } from "../data/common";
 import { CalendarSelect } from "../components/CalendarSelect";
 import { DateType, MoodType } from "../lib/type";
-import { useRecoilState } from "recoil";
-import { diaryState } from "../data/dataState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { diaryListState, diaryState } from "../data/dataState";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
@@ -13,6 +13,7 @@ export const TodayIs = () => {
   const history = useNavigate();
 
   const [diary, setDiary] = useRecoilState(diaryState);
+  const diaryList = useRecoilValue(diaryListState);
 
   const handleDateChage = (date: DateType) => {
     const result = { ...diary, date };
@@ -40,7 +41,7 @@ export const TodayIs = () => {
         />
       </div>
       <div className="py-2">
-        <CalendarSelect dateChage={handleDateChage} />
+        <CalendarSelect diaryList={diaryList} dateChage={handleDateChage} />
       </div>
       <div className="py-2">
         <Button text="일기 쓰러 가기" onClick={handleClick} />
