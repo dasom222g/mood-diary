@@ -1,19 +1,28 @@
-import { DiaryType } from "../lib/type";
+import { DateType, DiaryType } from "../lib/type";
 import { daysOfWeek } from "./common";
 
-const today = (): string => {
+const today = (): DateType => {
   const todayData = new Date();
   const year = todayData.getFullYear()
-  const month = todayData.getMonth()
+  const month = todayData.getMonth() + 1
   const day = todayData.getDate()
-  const dayOfWeeks = todayData.getDay()
-  const resultDate = `${year}년 ${month + 1}월 ${day}일 ${
-    daysOfWeek[dayOfWeeks]
+  const dayOfWeeks = daysOfWeek[todayData.getDay()]
+
+  const totalText = `${year}년 ${month}월 ${day}일 ${
+    dayOfWeeks
   }`;
+
+  const resultDate: DateType = {
+    year,
+    month,
+    day,
+    dayOfWeeks,
+    totalDate: `${year}-${month}-${day}`,
+    totalText
+  }
   return resultDate
 }
 
-today()
 
 export const initialDiary: DiaryType = {
   id: 1,

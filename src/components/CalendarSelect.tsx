@@ -2,19 +2,32 @@ import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React, { FC } from 'react';
 import { daysOfWeek } from '../data/common';
+import { DateType } from '../lib/type';
 
 interface CalendarSelectProps {
-  dateChage: (date: string) => void;
+  dateChage: (date: DateType) => void;
 }
 
 export const CalendarSelect: FC<CalendarSelectProps> = ({ dateChage }) => {
   // logic
   const handleChange = (value: any | null) => {
-    const { $y: year, $M: month, $D: day, $W: dayOfWeeks } = value;
-    // 2023년 10월 7일 토요일
-    const resultDate = `${year}년 ${month + 1}월 ${day}일 ${
-      daysOfWeek[dayOfWeeks]
+    const { $y: year, $M, $D: day, $W } = value;
+    const month = $M + 1
+    const dayOfWeeks = daysOfWeek[$W]
+
+    const totalText = `${year}년 ${month}월 ${day}일 ${
+      dayOfWeeks
     }`;
+  
+    const resultDate: DateType = {
+      year,
+      month,
+      day,
+      dayOfWeeks,
+      totalDate: `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`,
+      totalText
+    }
+
     dateChage(resultDate);
   };
   // view
