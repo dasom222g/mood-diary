@@ -3,20 +3,25 @@ import Title from "../components/Title";
 
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { diaryListState } from "../data/dataState";
+import { calendarDateState, diaryListState } from "../data/dataState";
 import CalendarView from "../components/CalendarView";
 
 const Home = () => {
   // logic
   const diaryList = useRecoilValue(diaryListState);
+  const calendarDate = useRecoilValue(calendarDateState);
 
   useEffect(() => {
     console.log(diaryList);
   }, [diaryList]);
+
   // view
   return (
     <div className="flex flex-col h-full items-center">
-      <Title mainTitle={"10월"} />
+      <Title
+        mainTitle={`${calendarDate.month}월`}
+        subTitle={`${calendarDate.year}년`}
+      />
       <div className="py-6">
         <CalendarView diaryList={diaryList} />
       </div>

@@ -8,8 +8,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
 import React, { FC } from "react";
 import { totalDate } from "../data/common";
-import { DiaryType } from "../lib/type";
+import { CalendarDateType, DiaryType } from "../lib/type";
 import Emotion from "./Emotion";
+import { calendarDateState } from "../data/dataState";
+import { useSetRecoilState } from "recoil";
 
 interface CalendarViewProps {
   diaryList: DiaryType[];
@@ -17,9 +19,22 @@ interface CalendarViewProps {
 
 const CalendarView: FC<CalendarViewProps> = ({ diaryList }) => {
   // logic
+  const setCalendarDate = useSetRecoilState(calendarDateState);
+
   const handleChange = (value: any | null) => {
     // const { $y: year, $M, $D: day, $W } = value;
     console.log("value", value);
+  };
+
+  const hadleMonthChange = (value: Dayjs) => {
+    const year = value.year();
+    const month = value.month() + 1;
+    const result: CalendarDateType = {
+      year,
+      month,
+    };
+    // console.log("🚀 value:", value.year());
+    setCalendarDate(result);
   };
 
   const writeDay = (
@@ -62,6 +77,7 @@ const CalendarView: FC<CalendarViewProps> = ({ diaryList }) => {
             day: writeDay,
           }}
           onChange={handleChange}
+          onMonthChange={hadleMonthChange}
         />
       </LocalizationProvider>
     </div>

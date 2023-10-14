@@ -19,4 +19,9 @@ export interface DiaryType {
   diary: string
 }
 
+export interface CalendarDateType {
+  year: number
+  month: number
+}
+
 

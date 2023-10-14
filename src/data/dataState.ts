@@ -1,6 +1,6 @@
 import { atom } from "recoil";
-import { DiaryType } from "../lib/type";
-import { initialDiary } from "./initialState";
+import { CalendarDateType, DiaryType } from "../lib/type";
+import { initialCalendarDate, initialDiary } from "./initialState";
 
 export const diaryState = atom<DiaryType>({
   key: 'diaryState',
@@ -10,4 +10,9 @@ export const diaryState = atom<DiaryType>({
 export const diaryListState = atom<DiaryType[]>({
   key: 'diaryListState',
   default: []
+})
+
+export const calendarDateState = atom<CalendarDateType>({
+  key: 'calendarDateState',
+  default: initialCalendarDate
 })
