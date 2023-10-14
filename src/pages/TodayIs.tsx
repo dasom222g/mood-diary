@@ -1,12 +1,12 @@
-import React from 'react';
-import EmotionSelect from '../components/EmotionSelect';
-import { moods } from '../data/common';
-import { CalendarSelect } from '../components/CalendarSelect';
-import { DateType, MoodType } from '../lib/type';
-import { useRecoilState } from 'recoil';
-import { diaryState } from '../data/dataState';
-import { useNavigate } from 'react-router-dom';
-import Button from '../components/Button';
+import React from "react";
+import EmotionGroup from "../components/EmotionGroup";
+import { moods } from "../data/common";
+import { CalendarSelect } from "../components/CalendarSelect";
+import { DateType, MoodType } from "../lib/type";
+import { useRecoilState } from "recoil";
+import { diaryState } from "../data/dataState";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 export const TodayIs = () => {
   // logic
@@ -26,14 +26,14 @@ export const TodayIs = () => {
   const handleClick = () => {
     const id = new Date().getTime() * 1000 * 60;
     setDiary((prev) => ({ ...prev, id }));
-    history('/mood');
+    history("/mood");
   };
 
   // view
   return (
     <div>
       <div className="py-2">
-        <EmotionSelect
+        <EmotionGroup
           title="오늘 하루는 어땠니?"
           moods={moods}
           emotionChage={handleEmotionChage}

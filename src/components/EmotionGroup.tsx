@@ -1,13 +1,13 @@
 import React, { FC, useState } from "react";
 import { MoodType } from "../lib/type";
 
-interface EmotionSelectProps {
+interface EmotionGroupProps {
   title: string;
   moods: MoodType[];
   emotionChage: (data: MoodType) => void;
 }
 
-const EmotionSelect: FC<EmotionSelectProps> = ({
+const EmotionGroup: FC<EmotionGroupProps> = ({
   title,
   moods,
   emotionChage,
@@ -51,4 +51,4 @@ const EmotionSelect: FC<EmotionSelectProps> = ({
   );
 };
 
-export default EmotionSelect;
+export default EmotionGroup;
