@@ -6,6 +6,7 @@ import Mood from "./pages/Mood";
 import Layout from "./components/layout/Layout";
 import { RecoilRoot } from "recoil";
 import Item from "./pages/Item";
+import PrevButton from "./components/layout/PrevButton";
 
 function App() {
   return (
@@ -13,9 +14,12 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/today-is" element={<TodayIs />} />
-          <Route path="/mood" element={<Mood />} />
-          <Route path="/item/:itemId" element={<Item />} />
+
+          <Route path="/" element={<PrevButton />}>
+            <Route path="/today-is" element={<TodayIs />} />
+            <Route path="/mood" element={<Mood />} />
+            <Route path="/item/:itemId" element={<Item />} />
+          </Route>
         </Routes>
       </Layout>
     </RecoilRoot>

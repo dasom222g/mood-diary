@@ -31,8 +31,8 @@ export const TodayIs = () => {
 
   // view
   return (
-    <div>
-      <div className="py-2">
+    <>
+      <div className="pb-2">
         <EmotionGroup
           title="오늘 하루는 어땠니?"
           moods={moods}
@@ -45,6 +45,6 @@ export const TodayIs = () => {
       <div className="py-2">
         <Button text="일기 쓰러 가기" onClick={handleClick} />
       </div>
-    </div>
+    </>
   );
 };
