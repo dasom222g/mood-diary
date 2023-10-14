@@ -44,3 +44,5 @@ export const moods: MoodType[] =[
 ]
 
 export const daysOfWeek = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
+
+export const totalDate = (year: number, month: number, day: number): string => `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`

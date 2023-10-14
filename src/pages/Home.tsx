@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import Title from '../components/Title';
+import React, { useEffect } from "react";
+import Title from "../components/Title";
 
-import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { diaryListState } from '../data/dataState';
-import Emotion from '../components/Emotion';
+import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { diaryListState } from "../data/dataState";
+import CalendarView from "../components/CalendarView";
 
 const Home = () => {
   // logic
@@ -16,16 +16,14 @@ const Home = () => {
   // view
   return (
     <div className="flex flex-col h-full items-center">
-      <Title mainTitle={'10월'} />
-      <div className="flex flex-wrap">
-        {diaryList.map((diary) => (
-          <Emotion key={diary.id} data={diary.mood} />
-        ))}
+      <Title mainTitle={"10월"} />
+      <div className="py-6">
+        <CalendarView diaryList={diaryList} />
       </div>
 
       {/* START: add button */}
       <Link
-        to={'/today-is'}
+        to={"/today-is"}
         className="w-10 h-10 bg-mood-purple rounded-full flex items-center justify-center item relative mt-auto"
       >
         <i className="block w-1 h-4 bg-neutral-800"></i>
