@@ -11,10 +11,6 @@ const Home = () => {
   const diaryList = useRecoilValue(diaryListState);
   const calendarDate = useRecoilValue(calendarDateState);
 
-  useEffect(() => {
-    console.log(diaryList);
-  }, [diaryList]);
-
   // viwe
   return (
     <div className="flex flex-col h-full items-center">
